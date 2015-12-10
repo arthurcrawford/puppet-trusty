@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-ENV TERM linux
+ENV TERM=linux
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     ca-certificates \
