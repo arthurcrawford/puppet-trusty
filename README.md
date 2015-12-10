@@ -50,7 +50,8 @@ Check that the file was created with the expected properties.
 ```sh
 root@mynode:/# cat /root/example_file.txt
 Congratulations!
-Puppet created this file.    
+Puppet created this file. 
+   
 root@mynode:/# ls -l /root/example_file.txt
 -rwx------ 1 root root 43 Dec 10 15:59 /root/example_file.txt
 ```
@@ -60,10 +61,13 @@ Break the config by changing the file's content and permissions.
 ```sh
 root@mynode:/# cat > /root/example_file.txt
 I'm broken!
-^D
+^D (Ctrl-D)
+
 root@mynode:/# cat /root/example_file.txt
 I'm broken!
+
 root@mynode:/# chmod +x /root/example_file.txt
+
 root@mynode:/# ls -l /root/example_file.txt
 -rwx--x--x 1 root root 43 Dec 10 15:59 /root/example_file.txt
 ```
@@ -75,8 +79,10 @@ root@mynode:/# puppet apply /etc/puppet/manifests/myconfig.pp
 Notice: Compiled catalog for mynode.example.com in environment production in 0.07 seconds
 Notice: /Stage[main]/Main/Node[mynode.example.com]/File[/root/example_file.txt]/mode: mode changed '0711' to '0700'
 Notice: Finished catalog run in 0.03 seconds
+
 root@mynode:/# ls -l /root/example_file.txt
 -rwx------ 1 root root 43 Dec 10 15:59 /root/example_file.txt
+
 root@mynode:/# cat /root/example_file.txt
 Congratulations!
 Puppet created this file.
